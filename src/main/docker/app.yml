@@ -1,0 +1,22 @@
+version: '2'
+services:
+#  exerciseapp-app:
+#    image: exerciseapp
+#    environment:
+#      - _JAVA_OPTIONS=-Xmx512m -Xms256m
+#      - SPRING_PROFILES_ACTIVE=prod,swagger
+#      - MANAGEMENT_METRICS_EXPORT_PROMETHEUS_ENABLED=true
+#      - SPRING_DATASOURCE_URL=jdbc:mysql://exerciseapp-mysql:3306/exerciseapp?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&serverTimezone=UTC&createDatabaseIfNotExist=true
+#      - JHIPSTER_CACHE_REDIS_SERVER=redis://exerciseapp-redis:6379
+#      - JHIPSTER_CACHE_REDIS_CLUSTER=false
+#      # - JHIPSTER_CACHE_REDIS_SERVER=redis://exerciseapp-redis:6379
+#      # - JHIPSTER_CACHE_REDIS_CLUSTER=true
+#      - JHIPSTER_SLEEP=30 # gives time for other services to boot before the application
+  exerciseapp-mysql:
+    extends:
+      file: mysql.yml
+      service: exerciseapp-mysql
+  exerciseapp-redis:
+    extends:
+      file: redis.yml
+      service: exerciseapp-redis

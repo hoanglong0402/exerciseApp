@@ -1,0 +1,17 @@
+{
+  "groups": [
+    {
+      "name": "application",
+      "type": "com.app.exercise.config.ApplicationProperties",
+      "sourceType": "com.app.exercise.config.ApplicationProperties"
+    },
+    {
+      "name": "spring.datasource.hikari",
+      "type": "javax.sql.DataSource",
+      "sourceType": "com.app.exercise.config.CloudDatabaseConfiguration",
+      "sourceMethod": "dataSource()"
+    }
+  ],
+  "properties": [],
+  "hints": []
+}
