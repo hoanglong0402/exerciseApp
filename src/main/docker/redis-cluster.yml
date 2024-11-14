@@ -1,7 +1,8 @@
-version: '2'
+# This configuration is intended for development purpose, it's **your** responsibility to harden it for production
+name: exerciseapp
 services:
-  exerciseapp-redis:
-    image: redis:6.0.4
+  redis:
+    image: redis:7.4.1
     command:
       - 'redis-server'
       - '--port 6379'
@@ -11,8 +12,8 @@ services:
       - '--appendonly yes'
     ports:
       - '6379:6379'
-  exerciseapp-redis-1:
-    image: redis:6.0.4
+  redis-1:
+    image: redis:7.4.1
     command:
       - 'redis-server'
       - '--port 6379'
@@ -22,8 +23,8 @@ services:
       - '--appendonly yes'
     ports:
       - '16379:6379'
-  exerciseapp-redis-2:
-    image: redis:6.0.4
+  redis-2:
+    image: redis:7.4.1
     command:
       - 'redis-server'
       - '--port 6379'
@@ -33,8 +34,8 @@ services:
       - '--appendonly yes'
     ports:
       - '26379:6379'
-  exerciseapp-redis-3:
-    image: redis:6.0.4
+  redis-3:
+    image: redis:7.4.1
     command:
       - 'redis-server'
       - '--port 6379'
@@ -44,8 +45,8 @@ services:
       - '--appendonly yes'
     ports:
       - '36379:6379'
-  exerciseapp-redis-4:
-    image: redis:6.0.4
+  redis-4:
+    image: redis:7.4.1
     command:
       - 'redis-server'
       - '--port 6379'
@@ -55,8 +56,8 @@ services:
       - '--appendonly yes'
     ports:
       - '46379:6379'
-  exerciseapp-redis-5:
-    image: redis:6.0.4
+  redis-5:
+    image: redis:7.4.1
     command:
       - 'redis-server'
       - '--port 6379'
@@ -66,7 +67,7 @@ services:
       - '--appendonly yes'
     ports:
       - '56379:6379'
-  exerciseapp-redis-cluster-builder:
+  redis-cluster-builder:
     build:
       context: .
       dockerfile: redis/Redis-Cluster.Dockerfile
