@@ -1,14 +1,13 @@
-package com.app.exercise.domain;
+package com.app.exerciseapp.domain;
 
-import com.app.exercise.domain.enumeration.TaskStatus;
+import com.app.exerciseapp.domain.enumeration.TaskStatus;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
+import java.io.Serializable;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import java.io.Serializable;
 
 @Entity
 @Table(name = "task")
@@ -20,11 +19,10 @@ public class Task extends AbstractAuditingEntity implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "TaskSequenceGenerator")
-    @SequenceGenerator(name = "TaskSequenceGenerator", sequenceName = "task_id_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "project_id")
+    @Column(name = "project_id", insertable = false, updatable = false)
     private Long projectId;
 
     @Column(name = "assigned_to")

@@ -1,12 +1,11 @@
-package com.app.exercise.domain;
+package com.app.exerciseapp.domain;
 
-import com.app.exercise.domain.enumeration.UserRole;
+import com.app.exerciseapp.domain.enumeration.UserRole;
+import jakarta.persistence.*;
+import java.io.Serializable;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import javax.persistence.*;
-import java.io.Serializable;
 
 @Entity
 @Table(name = "user")
@@ -18,11 +17,10 @@ public class User extends AbstractAuditingEntity implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "UserSequenceGenerator")
-    @SequenceGenerator(name = "UserSequenceGenerator", sequenceName = "user_id_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "user_name")
+    @Column(name = "username")
     private String userName;
 
     @Column(name = "email")
@@ -31,5 +29,4 @@ public class User extends AbstractAuditingEntity implements Serializable {
     @Column(name = "role")
     @Enumerated(EnumType.STRING)
     private UserRole role;
-
 }
