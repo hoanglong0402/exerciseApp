@@ -13,6 +13,7 @@ public class TaskDTO {
     private Long projectId;
 
     private Long assignedTo;
+    private String assignedUserName;
     private String title;
     private String description;
     private TaskStatus status = TaskStatus.NEW;

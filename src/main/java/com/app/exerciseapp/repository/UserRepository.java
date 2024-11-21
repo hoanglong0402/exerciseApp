@@ -8,6 +8,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 public interface UserRepository extends JpaRepository<User, Long> {
-    @Query("SELECT u FROM User u " + "WHERE u.role = :userRole")
-    Page<User> findAllUsersWithFilter(UserRole userRole, Pageable pageable);
+    @Query(
+        " SELECT u FROM User u " +
+        "WHERE (:userRole is null or u.role = :userRole) " +
+        "and (:userName is null or u.userName like '%' || :userName || '%')"
+    )
+    Page<User> findAllUsersWithFilter(UserRole userRole, String userName, Pageable pageable);
 }

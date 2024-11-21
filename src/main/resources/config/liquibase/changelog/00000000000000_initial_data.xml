@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <databaseChangeLog
-    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.9.xsd">
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.9.xsd">
 
     <property name="autoIncrement" value="true"/>
 
@@ -12,31 +12,36 @@
             VALUES ('MinhNguyen', 'minhnguyen@example.com', 'PRODUCT_OWNER', NOW(), NOW());
 
             INSERT INTO project (name, description, owner_id, created_date, last_modified_date)
-            VALUES ('Project January', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', LAST_INSERT_ID(), NOW(), NOW());
+            VALUES ('Project January', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', LAST_INSERT_ID(),
+                    NOW(), NOW());
 
             INSERT INTO user (username, email, role, created_date, last_modified_date)
             VALUES ('LanPham', 'lanpham@example.com', 'PRODUCT_OWNER', NOW(), NOW());
 
             INSERT INTO project (name, description, owner_id, created_date, last_modified_date)
-            VALUES ('Project February', 'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', LAST_INSERT_ID(), NOW(), NOW());
+            VALUES ('Project February', 'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+                    LAST_INSERT_ID(), NOW(), NOW());
 
             INSERT INTO user (username, email, role, created_date, last_modified_date)
             VALUES ('HanhTran', 'hanhtran@example.com', 'PRODUCT_OWNER', NOW(), NOW());
 
             INSERT INTO project (name, description, owner_id, created_date, last_modified_date)
-            VALUES ('Project March', 'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.', LAST_INSERT_ID(), NOW(), NOW());
+            VALUES ('Project March', 'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.',
+                    LAST_INSERT_ID(), NOW(), NOW());
 
             INSERT INTO user (username, email, role, created_date, last_modified_date)
             VALUES ('TuanLe', 'tuanle@example.com', 'PRODUCT_OWNER', NOW(), NOW());
 
             INSERT INTO project (name, description, owner_id, created_date, last_modified_date)
-            VALUES ('Project April', 'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.', LAST_INSERT_ID(), NOW(), NOW());
+            VALUES ('Project April', 'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.',
+                    LAST_INSERT_ID(), NOW(), NOW());
 
             INSERT INTO user (username, email, role, created_date, last_modified_date)
             VALUES ('HoaDang', 'hoadang@example.com', 'PRODUCT_OWNER', NOW(), NOW());
 
             INSERT INTO project (name, description, owner_id, created_date, last_modified_date)
-            VALUES ('Project May', 'Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia.', LAST_INSERT_ID(), NOW(), NOW());
+            VALUES ('Project May', 'Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia.',
+                    LAST_INSERT_ID(), NOW(), NOW());
 
         </sql>
     </changeSet>

@@ -6,12 +6,14 @@ import com.app.exerciseapp.service.UserService;
 import com.app.exerciseapp.service.dto.UserDTO;
 import com.app.exerciseapp.service.mapper.UserMapper;
 import com.app.exerciseapp.web.rest.request.SearchUserFilter;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
+@Transactional
 public class UserServiceImpl implements UserService {
 
     @Autowired
@@ -22,7 +24,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Page<UserDTO> getUsers(Pageable pageable, SearchUserFilter filter) {
-        Page<User> result = userRepository.findAllUsersWithFilter(filter.getUserRole(), pageable);
+        Page<User> result = userRepository.findAllUsersWithFilter(filter.getUserRole(), filter.getUserName(), pageable);
         return result.map(userMapper::toDto);
     }
 }

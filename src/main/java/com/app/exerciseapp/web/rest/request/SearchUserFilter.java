@@ -7,4 +7,5 @@ import lombok.Data;
 public class SearchUserFilter {
 
     private UserRole userRole;
+    private String userName;
 }

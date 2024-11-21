@@ -2,10 +2,8 @@ package com.app.exerciseapp.config;
 
 import static org.springframework.security.config.Customizer.withDefaults;
 
-import com.app.exerciseapp.security.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -32,8 +30,8 @@ public class SecurityConfiguration {
             .csrf(csrf -> csrf.disable())
             .authorizeHttpRequests(authz ->
                 // prettier-ignore
-                authz
-                    .requestMatchers(mvc.pattern("/**")).permitAll()
+                        authz
+                                .requestMatchers(mvc.pattern("/**")).permitAll()
             )
             .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .exceptionHandling(exceptions ->

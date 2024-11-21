@@ -1,10 +1,7 @@
 package com.app.exerciseapp.web.rest;
 
-import com.app.exerciseapp.service.ProjectService;
 import com.app.exerciseapp.service.UserService;
-import com.app.exerciseapp.service.dto.ProjectBasicDTO;
 import com.app.exerciseapp.service.dto.UserDTO;
-import com.app.exerciseapp.web.rest.request.SearchProjectFilter;
 import com.app.exerciseapp.web.rest.request.SearchUserFilter;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
