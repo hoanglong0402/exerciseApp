@@ -48,7 +48,7 @@ public class TaskServiceImpl implements TaskService {
             if (user.isEmpty()) {
                 throw new BadRequestAlertException("User Id not found", "TaskDTO", "user.id.not.found");
             }
-            userEntity = user.get();
+            userEntity = user.orElseThrow();
         }
         if (Objects.isNull(task.getId())) {
             taskEntity = taskMapper.toEntity(task);

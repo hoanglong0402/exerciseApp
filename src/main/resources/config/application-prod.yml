@@ -17,8 +17,11 @@ logging:
   level:
     ROOT: INFO
     tech.jhipster: INFO
+    org.hibernate.SQL: DEBUG
     com.app.exerciseapp: INFO
-
+  file:
+    path: ./logs
+    name: application.log
 management:
   prometheus:
     metrics:

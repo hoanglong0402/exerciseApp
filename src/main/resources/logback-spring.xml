@@ -10,23 +10,20 @@
     <!--
     <property name="FILE_LOG_PATTERN" value="${FILE_LOG_PATTERN:-%d{${LOG_DATEFORMAT_PATTERN:-yyyy-MM-dd'T'HH:mm:ss.SSSXXX}} ${LOG_LEVEL_PATTERN:-%5p} ${PID:- } &#45;&#45;&#45; [%t] %-40.40logger{39} : %crlf(%m) %n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}}"/>
     -->
-
+    <property name="LOG_FILE" value="${LOG_FILE:-logs/application.log}" />
     <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
     <include resource="org/springframework/boot/logging/logback/console-appender.xml"/>
-
-    <!-- The FILE and ASYNC appenders are here as examples for a production configuration -->
-    <!--
-    <include resource="org/springframework/boot/logging/logback/file-appender.xml" />
-
-    <appender name="ASYNC" class="ch.qos.logback.classic.AsyncAppender">
-        <queueSize>512</queueSize>
-        <appender-ref ref="FILE"/>
+    <appender name="ROLLING_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_FILE}</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>logs/application-%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>2</maxHistory>
+            <totalSizeCap>10MB</totalSizeCap>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
     </appender>
-
-    <root level="${logging.level.root}">
-        <appender-ref ref="ASYNC"/>
-    </root>
-    -->
 
     <logger name="com.app.exerciseapp" level="INFO"/>
 
@@ -75,7 +72,8 @@
 
     <springProperty name="log.level" source="logging.level.root" defaultValue="INFO"/>
     <root level="${log.level}">
-        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="ROLLING_FILE"/>
+        <appender-ref ref="CONSOLE" />
     </root>
 
     <!-- Prevent logback from outputting its own status -->

@@ -4,6 +4,8 @@ import com.app.exerciseapp.service.TaskService;
 import com.app.exerciseapp.service.dto.TaskDTO;
 import jakarta.validation.Valid;
 import java.util.List;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -18,22 +20,27 @@ import tech.jhipster.web.util.PaginationUtil;
 @RequestMapping("/api/tasks")
 public class TaskController {
 
+    private static final Logger logger = LoggerFactory.getLogger(TaskController.class);
+
     @Autowired
     private TaskService taskService;
 
     @PostMapping
     public TaskDTO createTask(@RequestBody @Valid TaskDTO task) {
+        logger.info("into createTask: {}", task);
         return taskService.upsertTask(task);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteTask(@PathVariable Long id) {
+        logger.info("into deleteTask: {}", id);
         taskService.deleteTask(id);
         return ResponseEntity.ok().build();
     }
 
     @GetMapping
     public ResponseEntity<List<TaskDTO>> getAllTasks(Pageable pageable) {
+        logger.info("into getAllTasks");
         Page<TaskDTO> result = taskService.getTasks(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), result);
         return new ResponseEntity<>(result.getContent(), headers, HttpStatus.OK);
