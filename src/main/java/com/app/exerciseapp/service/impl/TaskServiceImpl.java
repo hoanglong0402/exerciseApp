@@ -10,6 +10,7 @@ import com.app.exerciseapp.service.TaskService;
 import com.app.exerciseapp.service.dto.TaskDTO;
 import com.app.exerciseapp.service.mapper.TaskMapper;
 import com.app.exerciseapp.web.rest.errors.BadRequestAlertException;
+import com.app.exerciseapp.web.rest.request.SearchTaskFilter;
 import jakarta.transaction.Transactional;
 import java.util.Objects;
 import java.util.Optional;
@@ -77,8 +78,14 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public Page<TaskDTO> getTasks(Pageable pageable) {
-        Page<Task> result = taskRepository.findAllProjectsWithFilter(pageable);
+    public Page<TaskDTO> getTasksByProjectId(Long id, SearchTaskFilter searchTaskFilter, Pageable pageable) {
+        Page<Task> result = taskRepository.findAllProjectsWithFilter(
+            id,
+            searchTaskFilter.getSearchKeyword(),
+            searchTaskFilter.getTaskStatus(),
+            searchTaskFilter.getUserId(),
+            pageable
+        );
         return result.map(taskMapper::toDto);
     }
 }

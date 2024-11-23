@@ -2,6 +2,7 @@ package com.app.exerciseapp.web.rest;
 
 import com.app.exerciseapp.service.TaskService;
 import com.app.exerciseapp.service.dto.TaskDTO;
+import com.app.exerciseapp.web.rest.request.SearchTaskFilter;
 import jakarta.validation.Valid;
 import java.util.List;
 import org.slf4j.Logger;
@@ -38,10 +39,14 @@ public class TaskController {
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping
-    public ResponseEntity<List<TaskDTO>> getAllTasks(Pageable pageable) {
-        logger.info("into getAllTasks");
-        Page<TaskDTO> result = taskService.getTasks(pageable);
+    @GetMapping("/project/{id}")
+    public ResponseEntity<List<TaskDTO>> getAllTasksByProjectId(
+        @PathVariable Long id,
+        SearchTaskFilter searchTaskFilter,
+        Pageable pageable
+    ) {
+        logger.info("into getAllTasks with proect_id {}: {}", id, searchTaskFilter);
+        Page<TaskDTO> result = taskService.getTasksByProjectId(id, searchTaskFilter, pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), result);
         return new ResponseEntity<>(result.getContent(), headers, HttpStatus.OK);
     }
